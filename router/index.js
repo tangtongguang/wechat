@@ -30,6 +30,5 @@ module.exports = app => {
     router.get('/', ctx => {
         ctx.body = 'hi'
     })
-
     app.use(router.routes(), router.allowedMethods())
 }
