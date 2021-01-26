@@ -28,7 +28,7 @@ module.exports = app => {
     })
 
     router.get('/', ctx => {
-        ctx.body = 'hi'
+        ctx.body = 'hi new'
     })
     app.use(router.routes(), router.allowedMethods())
 }
