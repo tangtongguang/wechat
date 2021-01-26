@@ -13,7 +13,7 @@ const router = new Router()
  */
 module.exports = app => {
     // 验证消息的确来自微信服务器
-    router.get('/', ctx => {
+    router.get('/echo', ctx => {
         const { openid } = ctx.query
         if (openid) { // 用户给公众号发消息
             console.log('openid is not null')
@@ -25,6 +25,10 @@ module.exports = app => {
         console.log(sha, signature)
         ctx.body = (sha === signature) ? echostr : ''
         console.log(ctx.body, ' is body')
+    })
+
+    router.get('/', ctx => {
+        ctx.body = 'hi'
     })
 
     app.use(router.routes(), router.allowedMethods())
