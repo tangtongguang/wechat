@@ -22,7 +22,7 @@ module.exports = app => {
         const { signature, timestamp, nonce, echostr } = ctx.query
         let str = [appConfig.Token, timestamp, nonce].sort().join('') // 按字典排序，拼接字符串
         let sha = sha1(str)
-        console.log(sha, signature)
+        console.log(appConfig.appId)
         ctx.body = (sha === signature) ? echostr : ''
         console.log(ctx.body, 'is body')
     })
