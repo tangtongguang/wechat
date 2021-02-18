@@ -30,8 +30,8 @@ const getJsapiTicket = async (accessToken) => {
         return readRes.jsapiTicket
     } catch (error) {
         // 未读取到文件中的正确内容则更新接口
-        await updateJsapiTicket()
-        return await getJsapiTicket()
+        //await updateJsapiTicket()
+        //return await getJsapiTicket()
     }
 }
 
@@ -42,7 +42,7 @@ const updateJsapiTicket = async () => {
         validTime = res.expires_in
         fs.writeFileSync(fileName, JSON.stringify({ createTime: new Date(), ...res }))
     } else {
-        await updateJsapiTicket()
+        //await updateJsapiTicket()
     }
 }
 

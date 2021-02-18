@@ -29,8 +29,8 @@ const getAccessToken = async () => {
         return readRes.access_token
     } catch (error) {
         // 未读取到文件中的正确内容则更新接口
-        await updateAccessToken()
-        return await getAccessToken()
+        //await updateAccessToken()
+        //return await getAccessToken()
     }
 }
 
@@ -41,7 +41,7 @@ const updateAccessToken = async () => {
         validTime = res.expires_in
         fs.writeFileSync(fileName, JSON.stringify({ createTime: new Date(), ...res }))
     } else {
-        await updateAccessToken()
+        //await updateAccessToken()
     }
 }
 
