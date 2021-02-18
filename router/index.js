@@ -4,8 +4,19 @@
 const Router = require('koa-router')
 const sha1 = require('sha1')
 const appConfig = require('../app.config')
+const sign = require('../utils/wechat/sign')
+const getAccessToken = require('../utils/wechat/getAccessToken')
+const getJsapiTicket = require('../utils/wechat/getJsapiTicket')
 
+// 获取微信鉴权信息
+// async getConfig () {
+//   
+//   console.log(config)
+// }
 const router = new Router()
+
+
+
 
 /**
  * 启动路由
@@ -27,6 +38,18 @@ module.exports = app => {
         console.log(ctx.body, 'is body')
     })
 
+
+    router.get('/config', async ctx => {
+        let config
+        try {
+            const jsapiTicket = await getJsapiTicket(await getAccessToken())
+            config = sign(appConfig.appId, jsapiTicket, ctx.query.url)
+        } catch (error) {
+            console.log('error', error)
+            config = {}
+        }
+        ctx.body = config;
+    })
 
     app.use(router.routes(), router.allowedMethods())
 }
